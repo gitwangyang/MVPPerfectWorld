@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--带有删除图标的输入框-->
+    <declare-styleable name="EditTextWithDeleteIcon">
+        <attr name="isAliganCenter" />
+        <attr name="showDeleteIcon" />
+        <attr name="deleteIconWidth" />
+        <attr name="deleteIconHeight" />
+    </declare-styleable>
+
+    <!--首页banner小圆点-->
+    <declare-styleable name="BannerIndicator">
+        <attr name="gap" format="dimension" />
+    </declare-styleable>
+
+</resources>
