@@ -150,6 +150,7 @@ dependencies {
     api rootProject.ext.dependencies.eventbus
     //butterknife插件
     api rootProject.ext.dependencies.butterknife
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 //    //multidex
 //    api rootProject.ext.dependencies.multidex
     //PageBottomTabLayout底部导航栏组件

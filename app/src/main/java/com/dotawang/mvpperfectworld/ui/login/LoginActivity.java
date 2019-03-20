@@ -15,6 +15,7 @@ import com.dotawang.mvpperfectworld.base.IView;
 import com.dotawang.mvpperfectworld.base.MVPBaseActivity;
 import com.dotawang.mvpperfectworld.ui.login.contract.LoginContract;
 import com.dotawang.mvpperfectworld.ui.login.presenter.LoginPresenter;
+import com.dotawang.mvpperfectworld.utils.ToastUtils;
 import com.dotawang.mvpperfectworld.utils.custom.EditTextWithDeleteIcon;
 
 import java.util.Map;
@@ -22,6 +23,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * @author DotaWang
@@ -71,11 +73,12 @@ public class LoginActivity extends MVPBaseActivity<LoginPresenter> implements Lo
     @BindView(R.id.background)
     RelativeLayout mBackground;
 
+    private Unbinder mUnbinder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
         initViews();
     }
 
@@ -113,12 +116,19 @@ public class LoginActivity extends MVPBaseActivity<LoginPresenter> implements Lo
 
                 break;
             case R.id.btn_login:
+                ToastUtils.showLong("login activity");
                 break;
             case R.id.tv_login_register:
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 }
 
