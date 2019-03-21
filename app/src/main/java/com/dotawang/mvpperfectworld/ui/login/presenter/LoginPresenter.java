@@ -1,8 +1,10 @@
 package com.dotawang.mvpperfectworld.ui.login.presenter;
 
+import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
 import com.dotawang.mvpperfectworld.ui.login.LoginActivity;
 import com.dotawang.mvpperfectworld.ui.login.contract.LoginContract;
 import com.dotawang.mvpperfectworld.ui.login.model.LoginModel;
+import com.dotawang.mvpperfectworld.utils.StringUtils;
 
 import java.util.Map;
 
@@ -23,15 +25,20 @@ public class LoginPresenter extends LoginContract.Presenter<LoginActivity,LoginM
     }
 
     @Override
-    public void dataReceived(Map<String, String> dataMap) {
+    public void dataReceived(ArticleListBean dataMap) {
         if (null!= mView){
             mView.setData(dataMap);
         }
-        String s = dataMap.get("2");
-        if (null!= s){
+        int s = dataMap.data.curPage;
+        if (!StringUtils.isEmpty(s+"")){
             if (null!= mView){
-                mView.setSomethingData(s);
+                mView.setSomethingData(s+"");
             }
         }
+    }
+
+    @Override
+    public void errorReceived(String msg) {
+
     }
 }

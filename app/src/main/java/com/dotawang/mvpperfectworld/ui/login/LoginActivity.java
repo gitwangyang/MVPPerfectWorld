@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.dotawang.mvpperfectworld.R;
 import com.dotawang.mvpperfectworld.base.IView;
 import com.dotawang.mvpperfectworld.base.MVPBaseActivity;
+import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
 import com.dotawang.mvpperfectworld.ui.login.contract.LoginContract;
 import com.dotawang.mvpperfectworld.ui.login.presenter.LoginPresenter;
 import com.dotawang.mvpperfectworld.utils.ToastUtils;
@@ -99,13 +100,13 @@ public class LoginActivity extends MVPBaseActivity<LoginPresenter> implements Lo
     }
 
     @Override
-    public void setData(Map<String, String> dataMap) {
+    public void setData(ArticleListBean dataMap) {
 
     }
 
     @Override
     public void setSomethingData(String msg) {
-//        tv.setText(msg);
+        mEtLoginUserName.setText(msg);
     }
 
     @OnClick({R.id.btn_login, R.id.tv_login_register})

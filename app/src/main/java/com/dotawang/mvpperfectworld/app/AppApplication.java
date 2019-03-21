@@ -1,9 +1,7 @@
 package com.dotawang.mvpperfectworld.app;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 
 import com.dotawang.mvpperfectworld.base.BaseApplication;
@@ -19,13 +17,13 @@ import java.util.ArrayList;
  */
 public class AppApplication extends BaseApplication {
     public static AppApplication instance;
-
-    private ArrayList<Activity> activityList = new ArrayList<Activity>();
+    private static Context mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        mContext = getApplicationContext();
     }
 
     /**
@@ -40,5 +38,9 @@ public class AppApplication extends BaseApplication {
 
     public static AppApplication getInstance(){
         return instance;
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 }

@@ -12,7 +12,7 @@ import org.json.JSONObject;
  */
 public class KLog {
 
-    private static boolean IS_SHOW_LOG = false;
+    public static boolean IS_SHOW_LOG = true;
 
     private static final String DEFAULT_MESSAGE = "execute";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");

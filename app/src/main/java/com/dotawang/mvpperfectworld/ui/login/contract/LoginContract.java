@@ -3,6 +3,7 @@ package com.dotawang.mvpperfectworld.ui.login.contract;
 import com.dotawang.mvpperfectworld.base.BasePresenter;
 import com.dotawang.mvpperfectworld.base.IModel;
 import com.dotawang.mvpperfectworld.base.IView;
+import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
 
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public interface LoginContract {
         /**
          * 更新数据
          */
-        void setData(Map<String, String> dataMap);
+        void setData(ArticleListBean dataMap);
 
         /**
          * 针对某一控件的局部刷新数据
@@ -40,7 +41,12 @@ public interface LoginContract {
             /**
              * 返回数据
              */
-            void dataReceived(Map<String,String> data);
+            void dataReceived(ArticleListBean data);
+
+            /**
+             * 返回失败
+             */
+            void errorReceived(String msg);
         }
     }
 

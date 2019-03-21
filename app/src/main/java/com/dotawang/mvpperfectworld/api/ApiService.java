@@ -1,10 +1,10 @@
 package com.dotawang.mvpperfectworld.api;
 
+import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
+
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created on 2019/3/19
@@ -13,10 +13,18 @@ import retrofit2.http.POST;
  * @Description:
  */
 public interface ApiService {
-//    @GET("action/apiv2/banner?catalog=1")
-//    Observable<BaseResponse<DemoEntity>> demoGet();
-//
-//    @FormUrlEncoded
-//    @POST("action/apiv2/banner?catalog=1")
-//    Observable<BaseResponse<DemoEntity>> demoPost(@Field("token") String token);
+    /**
+     * wanandroid 首页文章列表
+     * @param curPage 当前第几页
+     * @return
+     */
+    @GET("article/list/{curPage}/json")
+    Observable<ArticleListBean> getData(@Path("curPage") int curPage);
+
+    /**
+     * 登录信息
+     * @return
+     */
+    @GET
+    Observable<ArticleListBean> getLoginData();
 }
