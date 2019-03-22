@@ -1,13 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.dotawang.mvpperfectworld.ui.main.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:background="@color/_E4E4E4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/_E4E4E4"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!--轮播图-->
+            <include layout="@layout/banner_container" />
+
+            <!--公告-->
+            <include layout="@layout/notice_container"/>
+        </LinearLayout>
+    </ScrollView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+</LinearLayout>
