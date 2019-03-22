@@ -72,11 +72,11 @@ public class LoginModel implements LoginContract.Model{
                     @Override
                     public void onNext(ArticleListBean articleListBean) {
                         if (null == articleListBean){
-                            mOnDataCallback.errorReceived("数据为空");
+                            mOnDataCallback.onFailure("数据为空");
                         }else if (articleListBean.errorCode!= 0){
-                            mOnDataCallback.errorReceived(articleListBean.errorMsg);
+                            mOnDataCallback.onFailure(articleListBean.errorMsg);
                         }else {
-                            mOnDataCallback.dataReceived(articleListBean);
+                            mOnDataCallback.onSuccess(articleListBean);
                         }
                     }
 

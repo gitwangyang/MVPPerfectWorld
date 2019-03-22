@@ -41,12 +41,12 @@ public interface LoginContract {
             /**
              * 返回数据
              */
-            void dataReceived(ArticleListBean data);
+            void onSuccess(ArticleListBean data);
 
             /**
              * 返回失败
              */
-            void errorReceived(String msg);
+            void onFailure(String msg);
         }
     }
 

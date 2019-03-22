@@ -25,7 +25,7 @@ public class LoginPresenter extends LoginContract.Presenter<LoginActivity,LoginM
     }
 
     @Override
-    public void dataReceived(ArticleListBean dataMap) {
+    public void onSuccess(ArticleListBean dataMap) {
         if (null!= mView){
             mView.setData(dataMap);
         }
@@ -38,7 +38,7 @@ public class LoginPresenter extends LoginContract.Presenter<LoginActivity,LoginM
     }
 
     @Override
-    public void errorReceived(String msg) {
+    public void onFailure(String msg) {
 
     }
 }
