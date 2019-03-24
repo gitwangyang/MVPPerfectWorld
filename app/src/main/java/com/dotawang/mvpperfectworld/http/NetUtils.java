@@ -80,7 +80,7 @@ public class NetUtils {
                 //增加返回值为Gson的支持(以实体类返回)
                 .addConverterFactory(GsonConverterFactory.create())
                 //增加返回值为Oservable<T>的支持
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(getOkHttpClient())
                 .build();
         return mRetrofit;

@@ -1,9 +1,9 @@
-package com.dotawang.mvpperfectworld.ui.login.model;
+package com.dotawang.mvpperfectworld.ui.main.model;
 
 import com.dotawang.mvpperfectworld.api.ApiService;
 import com.dotawang.mvpperfectworld.http.NetUtils;
-import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
-import com.dotawang.mvpperfectworld.ui.login.contract.LoginContract;
+import com.dotawang.mvpperfectworld.ui.bean.HomeBean;
+import com.dotawang.mvpperfectworld.ui.main.contract.HomeContract;
 import com.dotawang.mvpperfectworld.utils.KLog;
 import com.dotawang.mvpperfectworld.utils.ToastUtils;
 
@@ -13,26 +13,24 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.Subject;
 
-
 /**
- * Created on 2019/3/19
- * Title:
- * @author Android-汪洋
- * @Description:
+ * @author Dota.Wang
+ * @date 2019/3/24
+ * @description
  */
-public class LoginModel implements LoginContract.Model{
 
-    private OnDataCallback mOnDataCallback;
+public class HomeModel implements HomeContract.Model {
+
+    private OnHomeDataCallback mOnHomeDataCallback;
 
     @Override
     public void requestData() {
-        NetUtils.getRetrofit()
+        NetUtils.getRetrofit("http://api.shiandianping.com")
                 .create(ApiService.class)
-//                .getLoginData()//todo  调试用下面的接口，实际调用上面这个接口
-                .getData(0)
+                .getBannerData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subject<ArticleListBean>() {
+                .subscribe(new Subject<HomeBean>() {
                     @Override
                     public boolean hasObservers() {
                         return false;
@@ -54,7 +52,7 @@ public class LoginModel implements LoginContract.Model{
                     }
 
                     @Override
-                    protected void subscribeActual(Observer<? super ArticleListBean> observer) {
+                    protected void subscribeActual(Observer<? super HomeBean> observer) {
                     }
 
                     @Override
@@ -62,20 +60,20 @@ public class LoginModel implements LoginContract.Model{
                     }
 
                     @Override
-                    public void onNext(ArticleListBean articleListBean) {
-                        if (null == articleListBean){
-                            mOnDataCallback.onFailure("数据为空");
-                        }else if (articleListBean.errorCode!= 0){
-                            mOnDataCallback.onFailure(articleListBean.errorMsg);
-                        }else {
-                            mOnDataCallback.onSuccess(articleListBean);
+                    public void onNext(HomeBean homeBean) {
+                        if (null == homeBean) {
+                            mOnHomeDataCallback.onFailure("数据为空");
+                        } else if (homeBean.getStatus() != 1) {
+                            mOnHomeDataCallback.onFailure("请求数据失败");
+                        } else {
+                            mOnHomeDataCallback.onSuccess(homeBean);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        ToastUtils.showShort("登录失败，请重新登录");
-                        KLog.d("登录失败，请重新登录");
+                        ToastUtils.showShort("数据获取失败，请重试");
+                        KLog.d("数据获取失败，请重试");
                     }
 
                     @Override
@@ -85,8 +83,7 @@ public class LoginModel implements LoginContract.Model{
                 });
     }
 
-    @Override
-    public void setDataReceivedCallback(OnDataCallback onDataCallback) {
-        this.mOnDataCallback = onDataCallback;
+    public void setOnHomeDataCallback(OnHomeDataCallback onHomeDataCallback) {
+        this.mOnHomeDataCallback = onHomeDataCallback;
     }
 }

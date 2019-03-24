@@ -16,11 +16,6 @@ public class MainModel implements MainContract.Model{
 
     }
 
-    @Override
-    public void onDataCallBack(OnMainDataCallback onMainDataCallback) {
-
-    }
-
     public void setOnMainDataCallback(OnMainDataCallback onMainDataCallback){
         this.mOnMainDataCallback = onMainDataCallback;
     }

@@ -1,6 +1,7 @@
 package com.dotawang.mvpperfectworld.api;
 
 import com.dotawang.mvpperfectworld.ui.bean.ArticleListBean;
+import com.dotawang.mvpperfectworld.ui.bean.HomeBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -27,4 +28,11 @@ public interface ApiService {
      */
     @GET
     Observable<ArticleListBean> getLoginData();
+
+    /**
+     * 轮播图
+     * @return
+     */
+    @GET("api/sourceAndroidDianPing/v1.0/Banner")
+    Observable<HomeBean> getBannerData();
 }

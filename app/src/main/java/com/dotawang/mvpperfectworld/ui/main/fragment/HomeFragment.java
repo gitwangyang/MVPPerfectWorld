@@ -2,6 +2,7 @@ package com.dotawang.mvpperfectworld.ui.main.fragment;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.dotawang.mvpperfectworld.R;
+import com.dotawang.mvpperfectworld.base.BaseFragmentV4;
+import com.dotawang.mvpperfectworld.base.IView;
+import com.dotawang.mvpperfectworld.ui.bean.HomeBean;
+import com.dotawang.mvpperfectworld.ui.main.contract.HomeContract;
+import com.dotawang.mvpperfectworld.ui.main.presenter.HomePresenter;
 import com.dotawang.mvpperfectworld.utils.ToastUtils;
 import com.dotawang.mvpperfectworld.utils.custom.BannerIndicator;
 import com.dotawang.mvpperfectworld.utils.custom.NewsViewFlipper;
@@ -20,7 +27,9 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +38,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeContract.View {
 
     @BindView(R.id.vPager)
     Banner mVPager;
@@ -40,32 +49,47 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.tvMore_notice)
     TextView mTvMoreNotice;
     Unbinder unbinder;
+    private List<HomeBean.DataBean> bannerDataList = new ArrayList<>();
+    private List<String> bannerUrlList = new ArrayList<>();
 
-    private String url[] = {"http://n.sinaimg.cn/games/3c3de2ce/20160105/3.jpg","http://img4.duitang.com/uploads/item/201402/14/20140214120558_2f4NN.jpeg","http://s9.knowsky.com/bizhi/l/20090808/200911053%20%2838%29.jpg"};
     public HomeFragment() {
+    }
+
+    @Override
+    protected IView getViewImp() {
+        return this;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
-        initBanner();
+        initRequest();
         return view;
     }
 
+    private void initRequest() {
+        if (null != getPresenter()) {
+            getPresenter().requestHomeData();
+        }
+    }
+
     private void initBanner() {
-        mVPager.setImages(Arrays.asList(url))
-               .setBannerStyle(BannerConfig.NOT_INDICATOR)
-               .setImageLoader(new ImageLoader() {
-                   @Override
-                   public void displayImage(Context context, Object path, ImageView imageView) {
-                       Glide.with(context.getApplicationContext())
-                               .load(path)
-                               .into(imageView);
-                   }
-               }).setDelayTime(4000)
+        mVPager
+                .setImages(bannerUrlList)
+                .setBannerStyle(BannerConfig.NOT_INDICATOR)
+                .setImageLoader(new ImageLoader() {
+                    @Override
+                    public void displayImage(Context context, Object path, ImageView imageView) {
+                        Glide.with(context.getApplicationContext())
+                                .load(bannerUrlList)
+                                .load(path)
+                                .apply(new RequestOptions().error(R.drawable.dialog_loading_icon))
+                                .into(imageView);
+                    }
+                }).setDelayTime(4000)
                 .start();
-        mItemNoticeNum.setUpWithViewPager(mVPager,url.length);
+        mItemNoticeNum.setUpWithViewPager(mVPager, bannerUrlList.size());
         mVPager.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int i) {
@@ -77,7 +101,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (null!= mVPager){
+        if (null != mVPager) {
             mVPager.startAutoPlay();
         }
     }
@@ -85,7 +109,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (null!= mVPager){
+        if (null != mVPager) {
             mVPager.stopAutoPlay();
         }
     }
@@ -94,5 +118,23 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setBannerData(HomeBean homeBean) {
+        if (null != homeBean) {
+            if (null != homeBean.getData() && homeBean.getData().size() > 0) {
+                bannerDataList.addAll(homeBean.getData());
+                for (int i = 0; i < bannerDataList.size(); i++) {
+                    bannerUrlList.add(bannerDataList.get(i).getUrl());
+                }
+            }
+        }
+        initBanner();
+    }
+
+    @Override
+    public void setNoticeData(HomeBean homeBean) {
+
     }
 }

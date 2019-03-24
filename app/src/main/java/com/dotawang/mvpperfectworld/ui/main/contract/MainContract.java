@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created on 2019/3/22
  * Title:
+ *
  * @author Android-汪洋
  * @Description:
  */
@@ -22,16 +23,16 @@ public interface MainContract {
     interface Model extends IModel {
         void requestData();
 
-        void onDataCallBack(OnMainDataCallback onMainDataCallback);
+        void setOnMainDataCallback(OnMainDataCallback onMainDataCallback);
 
-        interface OnMainDataCallback{
+        interface OnMainDataCallback {
             void onSuccess(List<Integer> listNum);
 
             void onFailure();
         }
     }
 
-    abstract class Presenter<V extends MainContract.View,M extends MainContract.Model> extends BasePresenter<V,M>{
+    abstract class Presenter<V extends MainContract.View, M extends MainContract.Model> extends BasePresenter<V, M> {
         public abstract void requestMainData();
     }
 }
