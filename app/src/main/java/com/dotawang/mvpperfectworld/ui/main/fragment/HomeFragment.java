@@ -2,14 +2,17 @@ package com.dotawang.mvpperfectworld.ui.main.fragment;
 
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -28,7 +31,6 @@ import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,8 +51,12 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
     @BindView(R.id.tvMore_notice)
     TextView mTvMoreNotice;
     Unbinder unbinder;
+    //数据源
     private List<HomeBean.DataBean> bannerDataList = new ArrayList<>();
+    //轮播图url集合
     private List<String> bannerUrlList = new ArrayList<>();
+    //公告内容集合
+    private List<String> noticeTitleList = new ArrayList<>();
 
     public HomeFragment() {
     }
@@ -104,6 +110,11 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
         if (null != mVPager) {
             mVPager.startAutoPlay();
         }
+        if (null != mVfContent) {
+            //滚动动画效果
+            ViewFlipper flipper = mVfContent;
+            flipper.startFlipping();
+        }
     }
 
     @Override
@@ -124,17 +135,53 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
     public void setBannerData(HomeBean homeBean) {
         if (null != homeBean) {
             if (null != homeBean.getData() && homeBean.getData().size() > 0) {
+                bannerDataList.clear();
                 bannerDataList.addAll(homeBean.getData());
+                bannerUrlList.clear();
+                noticeTitleList.clear();
                 for (int i = 0; i < bannerDataList.size(); i++) {
                     bannerUrlList.add(bannerDataList.get(i).getUrl());
+                    noticeTitleList.add(bannerDataList.get(i).getPageTitle());
                 }
             }
         }
         initBanner();
+        updateNoticeData();
     }
 
     @Override
     public void setNoticeData(HomeBean homeBean) {
 
     }
+
+    /**
+     * 更新公告内容
+     */
+    private void updateNoticeData() {
+        if (null != noticeTitleList && noticeTitleList.size() > 0) {
+            for (int i = 0; i < noticeTitleList.size(); i++) {
+                TextView tv = new TextView(getActivity());
+                tv.setId(i);
+                tv.setText(noticeTitleList.get(i));
+                tv.setMaxLines(1);
+                tv.setTextSize(12);
+                tv.setEllipsize(TextUtils.TruncateAt.END);
+                tv.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+                tv.setTextColor(getResources().getColor(R.color._55555));
+                tv.setTag(i);
+                tv.setOnClickListener(clickListener);
+                mVfContent.addView(tv, android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT);
+                mVfContent.setBackgroundColor(Color.WHITE);
+
+            }
+        }
+    }
+
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int index = (Integer) v.getTag();
+            ToastUtils.showShort(v.getId() + "");
+        }
+    };
 }

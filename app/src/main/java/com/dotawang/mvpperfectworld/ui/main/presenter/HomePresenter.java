@@ -16,6 +16,7 @@ public class HomePresenter extends HomeContract.Presenter<HomeFragment, HomeMode
     public void onSuccess(HomeBean homeBean) {
         if (null != mView) {
             mView.setBannerData(homeBean);
+            //公告数据暂时从homeBean中取
 //            mView.setNoticeData(homeBean);
         }
     }

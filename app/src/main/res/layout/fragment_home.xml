@@ -12,13 +12,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/_E4E4E4"
+            android:background="@color/white"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
             <!--轮播图-->
-            <include layout="@layout/banner_container" />
+            <include layout="@layout/banner_container"/>
 
             <!--公告-->
             <include layout="@layout/notice_container"/>
