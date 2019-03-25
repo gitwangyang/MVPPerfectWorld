@@ -6,26 +6,104 @@
     tools:context="com.dotawang.mvpperfectworld.ui.main.fragment.HomeFragment">
 
     <ScrollView
-        android:background="@color/_E4E4E4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/_E4E4E4">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical">
 
             <!--轮播图-->
-            <include layout="@layout/banner_container"/>
+            <include layout="@layout/banner_container" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="@dimen/dimen_15_dp"
+                android:layout_marginRight="@dimen/dimen_15_dp"
+                android:background="@drawable/bg_corner_home"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:text="预约挂号"
+                            android:textSize="20sp"
+                            android:gravity="top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:text="提供电话咨询"
+                            android:textSize="14sp"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:text="在线问诊"
+                            android:textSize="20sp"
+                            android:gravity="top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:text="快速专业解答"
+                            android:textSize="14sp"
+                            android:gravity="bottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
 
             <!--公告-->
-            <include layout="@layout/notice_container"/>
+            <include layout="@layout/notice_container" />
         </LinearLayout>
     </ScrollView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
 </LinearLayout>
