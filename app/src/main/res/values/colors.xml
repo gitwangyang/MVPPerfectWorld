@@ -18,6 +18,7 @@
     <color name="_999999">#ff999999</color>
     <color name="_ffffff">#ffffffff</color>
     <color name="_55555">#555555</color>
+    <color name="_484848">#484848</color>
     <color name="_f6f6f8">#fff6f6f8</color>
     <color name="_E4E4E4">#E4E4E4</color>
     <color name="_8B9CAC">#8B9CAC</color>
@@ -40,7 +41,7 @@
 
     <!--bottom bar-->
     <color name="bg_bottom_bar">#4455B7</color>
-    <color name="banner_bg">#2C8BFF</color>
-
+    <color name="_2C8BFF">#2C8BFF</color>
+    <color name="_34CFC9">#34CFC9</color>
 
 </resources>

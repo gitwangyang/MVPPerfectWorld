@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,93 +17,140 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <!--轮播图-->
-            <include layout="@layout/banner_container" />
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginLeft="@dimen/dimen_15_dp"
-                android:layout_marginRight="@dimen/dimen_15_dp"
-                android:background="@drawable/bg_corner_home"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
+                <!--轮播图-->
+                <include layout="@layout/banner_container" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="10dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:paddingLeft="@dimen/dimen_20_dp"
+                    android:paddingRight="@dimen/dimen_20_dp"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:layout_marginLeft="@dimen/dimen_15_dp"
+                    android:layout_marginRight="@dimen/dimen_15_dp"
+                    android:background="@drawable/bg_corner_home"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:src="@mipmap/ic_launcher"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
-                            android:text="预约挂号"
-                            android:textSize="20sp"
-                            android:gravity="top"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/_2C8BFF"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="10dp">
+
+                        <ImageView
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
-                            android:text="提供电话咨询"
-                            android:textSize="14sp"
-                            android:gravity="bottom"
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp">
+                            <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="预约挂号"
+                                android:textSize="20sp"
+                                android:gravity="top|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                                android:textColor="@color/white"
+                                android:text="提供电话咨询"
+                                android:textSize="14sp"
+                                android:gravity="bottom|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
                     </LinearLayout>
 
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:src="@mipmap/ic_launcher"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
                     <LinearLayout
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
-                            android:text="在线问诊"
-                            android:textSize="20sp"
-                            android:gravity="top"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/_34CFC9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="10dp">
+
+                        <ImageView
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
-                            android:text="快速专业解答"
-                            android:textSize="14sp"
-                            android:gravity="bottom"
+
+                        <LinearLayout
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp">
+                            <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="在线问诊"
+                                android:textSize="20sp"
+                                android:gravity="top|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                                android:textColor="@color/white"
+                                android:text="快速专业解答"
+                                android:textSize="14sp"
+                                android:gravity="bottom|center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
-
-
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <!--公告-->
             <include layout="@layout/notice_container" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@drawable/bg_line_home"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="健康检测"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:textColor="@color/_484848"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>
