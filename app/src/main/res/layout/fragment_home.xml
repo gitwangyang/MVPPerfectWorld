@@ -47,10 +47,10 @@
                         android:layout_marginEnd="10dp">
 
                         <ImageView
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/order_number_home"
                             android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="40dp"
+                            android:layout_height="30dp" />
 
                         <LinearLayout
                             android:layout_gravity="center_vertical"
@@ -88,10 +88,11 @@
                         android:layout_marginStart="10dp">
 
                         <ImageView
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/order_number_home"
                             android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:scaleType="fitXY"
+                            android:layout_width="40dp"
+                            android:layout_height="30dp" />
 
                         <LinearLayout
                             android:layout_gravity="center_vertical"
@@ -148,7 +149,187 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
+            <com.dotawang.mvpperfectworld.utils.custom.NineCaseGridView
+                android:id="@+id/gv_nine_case_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:horizontalSpacing="3dp"
+                android:listSelector="@null"
+                android:numColumns="4"
+                android:layout_marginLeft="@dimen/dimen_20_dp"
+                android:layout_marginRight="@dimen/dimen_20_dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:scrollbars="none"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="3dp" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@drawable/bg_line_home"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="热门推荐"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:textColor="@color/_484848"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bg_recommend1_home"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:textColor="@color/white"
+                            android:text="邀请好友"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:textColor="@color/white"
+                            android:text="领优惠大礼包"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:text="立即邀请"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/bg_btn_recommend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitXY"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bg_recommend2_home"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:textColor="@color/white"
+                            android:text="名师课堂"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <com.dotawang.mvpperfectworld.utils.custom.AutoScaleTextView
+                            android:textColor="@color/white"
+                            android:text="特价一元授课"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <Button
+                            android:text="直播邀请"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/bg_btn_recommend2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitXY"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@drawable/bg_line_home"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="限时优惠"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:textColor="@color/_484848"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="@dimen/dimen_20_dp"
+                android:layout_marginRight="@dimen/dimen_20_dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/time_limit_offer_home"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/subtraction_action_home"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -19,12 +19,15 @@ import com.bumptech.glide.request.RequestOptions;
 import com.dotawang.mvpperfectworld.R;
 import com.dotawang.mvpperfectworld.base.BaseFragmentV4;
 import com.dotawang.mvpperfectworld.base.IView;
+import com.dotawang.mvpperfectworld.ui.adapter.NineCaseAdapter;
 import com.dotawang.mvpperfectworld.ui.bean.HomeBean;
+import com.dotawang.mvpperfectworld.ui.bean.NineCaseAppIconBean;
 import com.dotawang.mvpperfectworld.ui.main.contract.HomeContract;
 import com.dotawang.mvpperfectworld.ui.main.presenter.HomePresenter;
 import com.dotawang.mvpperfectworld.utils.ToastUtils;
 import com.dotawang.mvpperfectworld.utils.custom.BannerIndicator;
 import com.dotawang.mvpperfectworld.utils.custom.NewsViewFlipper;
+import com.dotawang.mvpperfectworld.utils.custom.NineCaseGridView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -50,13 +53,27 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
     NewsViewFlipper mVfContent;
     @BindView(R.id.tvMore_notice)
     TextView mTvMoreNotice;
+    @BindView(R.id.gv_nine_case_home)
+    NineCaseGridView mGvNineCaseHome;
     Unbinder unbinder;
-    //数据源
-    private List<HomeBean.DataBean> bannerDataList = new ArrayList<>();
-    //轮播图url集合
-    private List<String> bannerUrlList = new ArrayList<>();
-    //公告内容集合
-    private List<String> noticeTitleList = new ArrayList<>();
+    /**
+     * 数据源
+     */
+    private List<HomeBean.DataBean> bannerDataList;
+    /**
+     * 轮播图url集合
+     */
+    private List<String> bannerUrlList;
+    /**
+     * 公告内容集合
+     */
+    private List<String> noticeTitleList;
+    /**
+     * 九宫格数据源集合
+     */
+    private List<NineCaseAppIconBean> mNineCaseAppIconList;
+
+    private NineCaseAdapter mNineCaseAdapter;
 
     public HomeFragment() {
     }
@@ -70,8 +87,49 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
+        initData();
         initRequest();
         return view;
+    }
+
+    private void initData() {
+        bannerDataList = new ArrayList<>();
+        bannerUrlList = new ArrayList<>();
+        noticeTitleList = new ArrayList<>();
+        mNineCaseAppIconList = new ArrayList<>();
+
+        NineCaseAppIconBean iconBean1 = new NineCaseAppIconBean();
+        iconBean1.setText("健康计划");
+        iconBean1.setLocalResource(getResources().getDrawable(R.drawable.health_plan_home));
+        mNineCaseAppIconList.add(iconBean1);
+
+        NineCaseAppIconBean iconBean2 = new NineCaseAppIconBean();
+        iconBean2.setText("用药百科");
+        iconBean2.setLocalResource(getResources().getDrawable(R.drawable.medicine_knowledge_home));
+        mNineCaseAppIconList.add(iconBean2);
+
+        NineCaseAppIconBean iconBean3 = new NineCaseAppIconBean();
+        iconBean3.setText("疾病自查");
+        iconBean3.setLocalResource(getResources().getDrawable(R.drawable.sickness_check_home));
+        mNineCaseAppIconList.add(iconBean3);
+
+        NineCaseAppIconBean iconBean4 = new NineCaseAppIconBean();
+        iconBean4.setText("健康测试");
+        iconBean4.setLocalResource(getResources().getDrawable(R.drawable.health_test_home));
+        mNineCaseAppIconList.add(iconBean4);
+
+        NineCaseAppIconBean iconBean5 = new NineCaseAppIconBean();
+        iconBean5.setText("眼科用药");
+        iconBean5.setLocalResource(getResources().getDrawable(R.drawable.eyes_medicine_home));
+        mNineCaseAppIconList.add(iconBean5);
+
+        NineCaseAppIconBean iconBean6 = new NineCaseAppIconBean();
+        iconBean6.setText("家庭常备");
+        iconBean6.setLocalResource(getResources().getDrawable(R.drawable.family_spare_home));
+        mNineCaseAppIconList.add(iconBean6);
+
+        mNineCaseAdapter = new NineCaseAdapter(getActivity(),mNineCaseAppIconList);
+        mGvNineCaseHome.setAdapter(mNineCaseAdapter);
     }
 
     private void initRequest() {
@@ -147,6 +205,14 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
         }
         initBanner();
         updateNoticeData();
+        initNineCase();
+    }
+
+    /**
+     * 九宫格
+     */
+    private void initNineCase() {
+
     }
 
     @Override
