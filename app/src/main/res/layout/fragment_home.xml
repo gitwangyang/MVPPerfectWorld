@@ -17,6 +17,33 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:drawableLeft="@drawable/location_home"
+                    android:text="上海市徐家汇美罗大厦108号"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/location_home" />
+
+                <TextView
+                    android:drawableRight="@drawable/clock_home"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="20dp"
+                    android:drawableEnd="@drawable/clock_home" />
+            </LinearLayout>
+
+            <com.dotawang.mvpperfectworld.utils.custom.SearchEdittext
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -26,7 +53,7 @@
                 <LinearLayout
                     android:layout_marginTop="160dp"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="130dp"
                     android:paddingLeft="@dimen/dimen_20_dp"
                     android:paddingRight="@dimen/dimen_20_dp"
                     android:paddingTop="30dp"

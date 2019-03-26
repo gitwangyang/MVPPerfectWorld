@@ -28,6 +28,7 @@ import com.dotawang.mvpperfectworld.utils.ToastUtils;
 import com.dotawang.mvpperfectworld.utils.custom.BannerIndicator;
 import com.dotawang.mvpperfectworld.utils.custom.NewsViewFlipper;
 import com.dotawang.mvpperfectworld.utils.custom.NineCaseGridView;
+import com.dotawang.mvpperfectworld.utils.custom.SearchEdittext;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -43,7 +44,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeContract.View {
+public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeContract.View, SearchEdittext.OnEditTextChange {
 
     @BindView(R.id.vPager)
     Banner mVPager;
@@ -55,6 +56,8 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
     TextView mTvMoreNotice;
     @BindView(R.id.gv_nine_case_home)
     NineCaseGridView mGvNineCaseHome;
+    @BindView(R.id.search_view)
+    SearchEdittext searchView;
     Unbinder unbinder;
     /**
      * 数据源
@@ -130,6 +133,8 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
 
         mNineCaseAdapter = new NineCaseAdapter(getActivity(),mNineCaseAppIconList);
         mGvNineCaseHome.setAdapter(mNineCaseAdapter);
+
+        searchView.setOnEditTextChange(this);
     }
 
     private void initRequest() {
@@ -250,4 +255,23 @@ public class HomeFragment extends BaseFragmentV4<HomePresenter> implements HomeC
             ToastUtils.showShort(v.getId() + "");
         }
     };
+
+    /**
+     * 搜索框的内容返回
+     * @param s
+     */
+    @Override
+    public void onValueChange(String s) {
+        if (!TextUtils.isEmpty(s)){
+            int i;
+            try {
+                i = Integer.parseInt(s);
+                ToastUtils.showShort("搜索的是"+i);
+                //todo  可做联想词汇的请求操作
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
