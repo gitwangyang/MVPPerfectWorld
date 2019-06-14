@@ -5,4 +5,13 @@
         <item name="contentInsetStart">0dp</item>
     </style>
 
+    <style name="DragSortDialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnim</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="DialogAnim">
+        <item name="android:windowEnterAnimation">@anim/push_up_in</item>
+        <item name="android:windowExitAnimation">@anim/push_up_out</item>
+    </style>
 </resources>
