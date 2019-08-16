@@ -4,6 +4,7 @@ import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
@@ -87,7 +89,12 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
         transition.setDuration(mTransitionDuration);
         setLayoutTransition(transition);
         //设置拖拽监听
-        setOnDragListener(mOnDragListener);
+        if (getChildCount() > 4){
+            setHasDrag(true);
+            setOnDragListener(mOnDragListener);
+        }else {
+            setHasDrag(false);
+        }
     }
 
     /**
@@ -121,14 +128,16 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
         private void initRects() {
             int childCount = getChildCount();
             mRects = new Rect[childCount];
-            for (int i = 0; i < childCount; i++) {
-                View childAt = getChildAt(i);
-                mRects[i] = new Rect(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+            if (childCount > 4){
+                for (int i = 4; i < childCount; i++) {
+                    View childAt = getChildAt(i);
+                    mRects[i] = new Rect(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                }
             }
         }
 
         private int getChildIndex(int x, int y) {
-            for (int i = 0; i < mRects.length; i++) {
+            for (int i = 4; i < mRects.length; i++) {
                 if (mRects[i].contains(x, y)) {
                     return i;
                 }
@@ -148,7 +157,7 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
                     break;
                 case DragEvent.ACTION_DRAG_LOCATION:
                     int childIndex = getChildIndex((int) event.getX(), (int) event.getY());
-                    if (childIndex >= 0 && getChildAt(childIndex) != mDragingView) {
+                    if (childIndex >= 4 && getChildAt(childIndex) != mDragingView) {
                         removeView(mDragingView);
                         addView(mDragingView, childIndex);
                     }
@@ -172,11 +181,20 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
         int textPadding = pxForDp(mTextPadding);
         int textSize = pxForSp(mTextSize);
         textView.setText(item);
-        textView.setTextSize(textSize);
+        textView.setTextSize(12);
         textView.setTextColor(mTextColor);
         textView.setGravity(Gravity.CENTER);
         textView.setPadding(textPadding, textPadding, textPadding, textPadding);
-        textView.setBackgroundResource(mTextNormalBackground);
+        if ("关注".equals(item) || "推荐".equals(item) || "深度".equals(item) || "快讯".equals(item)){
+            textView.setBackgroundColor(Color.GRAY);
+        }else {
+            textView.setBackgroundResource(mTextNormalBackground);
+        }
+        //添加右上角图标
+        Drawable nav_up=getResources().getDrawable(R.drawable.delete);
+        nav_up.setBounds(0, 0, nav_up.getMinimumWidth(), nav_up.getMinimumHeight());
+        textView.setCompoundDrawables(null, null, nav_up, null);
+
         LayoutParams params = new LayoutParams();
         int textMargin = pxForDp(mTextMargin);
         int widthPixels = getResources().getDisplayMetrics().widthPixels;
@@ -218,6 +236,7 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
         } else {
             mItems.clear();
         }
+
         for (T item : items) {
             mItems.put(item.getTitle(), item);
         }
@@ -315,8 +334,15 @@ public class DragGridView<T extends ItemTitle> extends GridLayout implements Vie
         }
         TextView textView = getTextView(item);
         addView(textView, index);
-        textView.setOnClickListener(this);
-        textView.setOnLongClickListener(this);
+        if ("关注".equals(item) || "推荐".equals(item) || "深度".equals(item) || "快讯".equals(item)){
+            textView.setClickable(false);
+            textView.setFocusable(false);
+        }else {
+            textView.setClickable(true);
+            textView.setFocusable(true);
+            textView.setOnClickListener(this);
+            textView.setOnLongClickListener(this);
+        }
     }
 
     /**

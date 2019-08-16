@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.dotawang.mvpperfectworld.R;
 import com.dotawang.mvpperfectworld.utils.custom.dragWidget.DragGridView;
 import com.dotawang.mvpperfectworld.utils.custom.dragWidget.DragSortDialog;
-import com.dotawang.mvpperfectworld.utils.custom.dragWidget.ItemTitle;
 import com.dotawang.mvpperfectworld.utils.custom.dragWidget.ItemTitleDefault;
 
 import java.util.ArrayList;
@@ -36,6 +35,8 @@ public class TestTwoFragment extends Fragment implements View.OnClickListener {
     DragGridView gridView;
 
     Unbinder unbinder;
+    String[] itemCurrent = {"关注","推荐","深度","快讯"};
+    String[] items,itemAll;
 
     private List<ItemTitleDefault> mList = new ArrayList<>();
     public TestTwoFragment(){
@@ -47,16 +48,27 @@ public class TestTwoFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_two_test,container, false);
         unbinder = ButterKnife.bind(this, view);
+        initData();
         initDragView();
         initListener();
         return view;
     }
 
+    private void initData() {
+        items = "ABCDEFG".split("\\B");
+        itemAll = new String[itemCurrent.length+items.length];
+        for (int i = 0; i < itemCurrent.length; i++) {
+            itemAll[i] = itemCurrent[i];
+        }
+        for (int j = 0; j < items.length; j++) {
+            itemAll[itemCurrent.length+j] = items[j];
+        }
+    }
+
     private void initDragView() {
-        gridView.setHasDrag(true);
-        gridView.setItemViews("ABCDEFG".split("\\B"));
+        gridView.setItemViews(itemAll);
         gridView.setColumnCount(3);
-        gridView.setTextSize(14);
+        gridView.setTextSize(12);
         Log.i("dota","gridView.getDefaultItems() ======"+gridView.getDefaultItems());
         Log.i("dota","gridView.getSortItems() ======"+gridView.getSortItems());
     }
@@ -95,5 +107,6 @@ public class TestTwoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         showDialog(v);
+//        gridView.addItemView("fuck",0);
     }
 }
