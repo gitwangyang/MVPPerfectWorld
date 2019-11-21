@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 //当前beta版本号
-ext.build_number = "beta1";
+ext.build_number = "beta1"
 //显示的时间格式，形如20170710
-def releaseTime() {
-    return new Date().format("yyyyMMdd", TimeZone.getDefault());
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getDefault())
 }
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -81,10 +80,11 @@ android {
 
     // 打包命名
     applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                // 显示app名称+当前版本号
+        variant.outputs.all {
+//            output ->
+//            def outputFile = output.outputFile
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                // 显示app名称+当前版本号
                 def fileName = "汪洋-V${variant.versionName}"
                 // 如果有渠道，显示渠道名""
                 if (variant.flavorName != "") {
@@ -100,7 +100,7 @@ android {
                     fileName = fileName + "-release.apk"
                 }
                 outputFileName = fileName
-            }
+//            }
         }
     }
 }
@@ -111,7 +111,7 @@ dependencies {
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'
-    testApi 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation rootProject.ext.support["runner"]
     androidTestImplementation rootProject.ext.support["espresso-core"]
     api(name: 'banner-release', ext: 'aar')
